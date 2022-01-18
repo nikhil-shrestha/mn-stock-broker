@@ -50,17 +50,12 @@ public class WatchListControllerTest {
 
   @Test
   void returnsWatchListForAccount() {
-    store.updateWatchList(TEST_ACCOUNT_ID, new WatchList(
-      Stream.of("AAPL", "GOOGL", "MSFT")
-        .map(Symbol::new)
-        .collect(Collectors.toList())
-    ));
+    givenWatchListForAccountExists();
 
     var response = client.toBlocking().exchange("/", JsonNode.class);
     assertEquals(HttpStatus.OK, response.getStatus());
     assertEquals(3, response.getBody().get().size());
   }
-
 
   @Test
   void canUpdateWatchListForAccount() {
@@ -74,4 +69,24 @@ public class WatchListControllerTest {
     assertEquals(HttpStatus.OK, added.getStatus());
     assertEquals(symbols, store.getWatchList(TEST_ACCOUNT_ID).getSymbols());
   }
+
+  @Test
+  void canDeleteWatchListForAccount() {
+    givenWatchListForAccountExists();
+
+    assertFalse(store.getWatchList(TEST_ACCOUNT_ID).getSymbols().isEmpty());
+
+    var deleted = client.toBlocking().exchange(HttpRequest.DELETE("/"));
+    assertEquals(HttpStatus.NO_CONTENT, deleted.getStatus());
+    assertTrue(store.getWatchList(TEST_ACCOUNT_ID).getSymbols().isEmpty());
+  }
+
+  private void givenWatchListForAccountExists() {
+    store.updateWatchList(TEST_ACCOUNT_ID, new WatchList(
+      Stream.of("AAPL", "GOOGL", "MSFT")
+        .map(Symbol::new)
+        .collect(Collectors.toList())
+    ));
+  }
+
 }

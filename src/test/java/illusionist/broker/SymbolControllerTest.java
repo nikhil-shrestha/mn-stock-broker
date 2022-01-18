@@ -1,6 +1,8 @@
 package illusionist.broker;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import illusionist.broker.model.Symbol;
+import illusionist.broker.store.InMemoryStore;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
@@ -23,11 +25,11 @@ class SymbolControllerTest {
   HttpClient client;
 
   @Inject
-  InMemoryStore inMemoryStore;
+  InMemoryStore store;
 
   @BeforeEach
   void setup(){
-    inMemoryStore.initializeWith(10);
+    store.initializeWith(10);
   }
 
   @Test
@@ -41,7 +43,7 @@ class SymbolControllerTest {
   void symbolsEndpointReturnsTheCorrectSymbol() {
     var testSymbol = new Symbol("TEST");
     LOG.debug("testSymbol: {}", testSymbol.getValue());
-    inMemoryStore.getSymbols().put(testSymbol.getValue(), testSymbol);
+    store.getSymbols().put(testSymbol.getValue(), testSymbol);
     LOG.debug("testSymbol: {}", testSymbol);
     var response = client.toBlocking().exchange("/" + testSymbol.getValue(), Symbol.class);
     assertEquals(HttpStatus.OK, response.getStatus());

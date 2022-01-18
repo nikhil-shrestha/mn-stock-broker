@@ -1,6 +1,7 @@
-package illusionist.broker;
+package illusionist.broker.store;
 
 import com.github.javafaker.Faker;
+import illusionist.broker.model.Symbol;
 import jakarta.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +32,7 @@ public class InMemoryStore {
 
   private void addNewSymbol() {
     var symbol = new Symbol(faker.stock().nsdqSymbol());
-    symbols.put(symbol.value, symbol);
+    symbols.put(symbol.getValue(), symbol);
     LOG.debug("Added Symbol {}", symbol);
   }
 

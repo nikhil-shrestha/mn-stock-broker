@@ -27,6 +27,11 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
 
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly("org.projectlombok:lombok:1.18.22")
+    annotationProcessor('org.projectlombok:lombok:1.18.22')
+    testCompileOnly("org.projectlombok:lombok:1.18.22")
+
     implementation('com.github.javafaker:javafaker:1.0.2')
 
 }

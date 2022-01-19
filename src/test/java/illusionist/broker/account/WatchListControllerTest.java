@@ -1,4 +1,4 @@
-package illusionist.broker;
+package illusionist.broker.account;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import illusionist.broker.model.Symbol;

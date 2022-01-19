@@ -11,3 +11,10 @@
 
 - [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
+## Feature security-jwt documentation
+- [Micronaut Security JWT documentation](https://micronaut-projects.github.io/micronaut-security/latest/guide/index.html)
+
+## Feature lombok documentation
+- [Micronaut Project Lombok documentation](https://docs.micronaut.io/latest/guide/index.html#lombok)
+
+- [https://projectlombok.org/features/all](https://projectlombok.org/features/all)

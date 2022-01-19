@@ -2,6 +2,7 @@ package illusionist.broker;
 
 import illusionist.broker.model.WatchList;
 import illusionist.broker.store.InMemoryAccountStore;
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
@@ -36,12 +37,12 @@ public class WatchListController {
     return store.updateWatchList(ACCOUNT_ID, watchList);
   }
 
-  @Status(HttpStatus.NO_CONTENT)
   @Delete(
     produces = MediaType.APPLICATION_JSON
   )
-  public void delete() {
+  public HttpResponse<Void> delete() {
     store.deleteWatchList(ACCOUNT_ID);
+    return HttpResponse.noContent();
   }
 
 }

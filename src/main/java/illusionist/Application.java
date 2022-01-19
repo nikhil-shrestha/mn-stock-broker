@@ -7,7 +7,8 @@ import io.swagger.v3.oas.annotations.info.*;
 @OpenAPIDefinition(
   info = @Info(
     title = "mn-stock-broker",
-    version = "0.0"
+    version = "0.1",
+    description = "Udemy Micronaut Course"
   )
 )
 public class Application {

@@ -34,6 +34,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("io.micronaut.rxjava2:micronaut-rxjava2-http-server-netty")
+    testImplementation("org.assertj:assertj-core")
     implementation("io.micronaut:micronaut-validation")
 
     implementation('com.github.javafaker:javafaker:1.0.2')

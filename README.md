@@ -24,6 +24,10 @@
 
 - [https://projectlombok.org/features/all](https://projectlombok.org/features/all)
 
+## Feature assertj documentation
+
+- [https://assertj.github.io/doc/](https://assertj.github.io/doc/)
+
 ## Feature openapi documentation
 
 - [Micronaut OpenAPI Support documentation](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)

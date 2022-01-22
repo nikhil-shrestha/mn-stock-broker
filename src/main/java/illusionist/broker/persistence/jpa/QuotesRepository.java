@@ -1,5 +1,6 @@
 package illusionist.broker.persistence.jpa;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,4 +21,7 @@ public interface QuotesRepository extends CrudRepository<QuoteEntity, Integer> {
   List<QuoteDTO> listOrderByVolumeDesc();
 
   List<QuoteDTO> listOrderByVolumeAsc();
+
+//  Filter
+  List<QuoteDTO> findByVolumeGreaterThanOrderByVolume(BigDecimal volume, String order);
 }

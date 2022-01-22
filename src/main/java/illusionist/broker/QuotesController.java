@@ -13,6 +13,7 @@ import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
+import io.micronaut.http.annotation.QueryValue;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.security.rules.SecurityRule;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -95,6 +97,12 @@ public class QuotesController {
   @Get("/jpa/ordered/asc")
   public List<QuoteDTO> orderedAsc() {
     return quotes.listOrderByVolumeAsc();
+  }
+
+  @Tag(name = "quotes")
+  @Get("/jpa/volume/{volume}/{order}")
+  public List<QuoteDTO> volumeFilter(@PathVariable BigDecimal volume, @PathVariable String order) {
+    return quotes.findByVolumeGreaterThanOrderByVolume(volume, order);
   }
 
 }

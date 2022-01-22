@@ -34,6 +34,32 @@ hello:
     greeting:
       de: "Hallo"
       en: "Hello"
+flyway:
+  datasources:
+    default:
+      enabled: true
+      clean-schema: false
+      url: jdbc:postgresql://localhost:5432/mn_stock_broker
+      driverClassName: org.postgresql.Driver
+      username: illusionist
+      password: 'illusion'
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/mn_stock_broker
+    driverClassName: org.postgresql.Driver
+    username: illusionist
+    password: 'illusion'
+    schema-generate: NONE
+    dialect: POSTGRES
+# micronaut-data-jpa
+jpa:
+  default:
+    packages-to-scan:
+      - "illusionist.broker.persistence"
+    properties:
+      hibernate:
+        show_sql: false
+        hbm2ddl.auto: update
 # JSON Settings
 jackson:
   # property-naming-strategy: SNAKE_CASE

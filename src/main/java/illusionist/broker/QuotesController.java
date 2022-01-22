@@ -2,6 +2,7 @@ package illusionist.broker;
 
 import illusionist.broker.error.CustomError;
 import illusionist.broker.model.Quote;
+import illusionist.broker.persistence.jpa.QuoteDTO;
 import illusionist.broker.persistence.jpa.QuotesRepository;
 import illusionist.broker.persistence.model.QuoteEntity;
 import illusionist.broker.persistence.model.SymbolEntity;
@@ -86,13 +87,13 @@ public class QuotesController {
 
   @Tag(name = "quotes")
   @Get("/jpa/ordered/desc")
-  public List<QuoteEntity> orderedDesc() {
+  public List<QuoteDTO> orderedDesc() {
     return quotes.listOrderByVolumeDesc();
   }
 
   @Tag(name = "quotes")
   @Get("/jpa/ordered/asc")
-  public List<QuoteEntity> orderedAsc() {
+  public List<QuoteDTO> orderedAsc() {
     return quotes.listOrderByVolumeAsc();
   }
 

@@ -17,7 +17,7 @@ public interface QuotesRepository extends CrudRepository<QuoteEntity, Integer> {
   Optional<QuoteEntity> findBySymbolValue(String entity);
 
   // Ordering
-  List<QuoteEntity> listOrderByVolumeDesc();
+  List<QuoteDTO> listOrderByVolumeDesc();
 
-  List<QuoteEntity> listOrderByVolumeAsc();
+  List<QuoteDTO> listOrderByVolumeAsc();
 }

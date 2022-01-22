@@ -5,8 +5,8 @@ import illusionist.broker.model.Quote;
 import illusionist.broker.persistence.jpa.QuoteDTO;
 import illusionist.broker.persistence.jpa.QuotesRepository;
 import illusionist.broker.persistence.model.QuoteEntity;
-import illusionist.broker.persistence.model.SymbolEntity;
 import illusionist.broker.store.InMemoryStore;
+import io.micronaut.data.model.Pageable;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
@@ -87,6 +87,7 @@ public class QuotesController {
     return HttpResponse.ok(maybeQuote.get());
   }
 
+  @Secured(SecurityRule.IS_ANONYMOUS)
   @Tag(name = "quotes")
   @Get("/jpa/ordered/desc")
   public List<QuoteDTO> orderedDesc() {
@@ -103,6 +104,22 @@ public class QuotesController {
   @Get("/jpa/volume/{volume}/{order}")
   public List<QuoteDTO> volumeFilter(@PathVariable BigDecimal volume, @PathVariable String order) {
     return quotes.findByVolumeGreaterThanOrderByVolume(volume, order);
+  }
+
+  @Tag(name = "quotes")
+  @Get("/jpa/pagination{?page,volume}")
+  public List<QuoteDTO> volumeFilterPagination(
+    @QueryValue Optional<Integer> page,
+    @QueryValue Optional<BigDecimal> volume) {
+    var myPage = page.isEmpty() ? 0 : page.get();
+    BigDecimal myVolume = volume.isEmpty() ? BigDecimal.ZERO : volume.get();
+    return quotes.findByVolumeGreaterThan(myVolume, Pageable.from(myPage, 5));
+  }
+
+  @Tag(name = "quotes")
+  @Get("/jpa/pagination/{page}")
+  public List<QuoteDTO> allWithPagination(@PathVariable int page) {
+    return quotes.list( Pageable.from(page, 5)).getContent();
   }
 
 }

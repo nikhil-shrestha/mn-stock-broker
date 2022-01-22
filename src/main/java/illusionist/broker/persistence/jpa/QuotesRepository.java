@@ -18,4 +18,6 @@ public interface QuotesRepository extends CrudRepository<QuoteEntity, Integer> {
 
   // Ordering
   List<QuoteEntity> listOrderByVolumeDesc();
+
+  List<QuoteEntity> listOrderByVolumeAsc();
 }

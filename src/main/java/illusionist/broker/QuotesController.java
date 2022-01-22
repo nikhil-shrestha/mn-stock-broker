@@ -86,8 +86,14 @@ public class QuotesController {
 
   @Tag(name = "quotes")
   @Get("/jpa/ordered/desc")
-  public List<QuoteEntity> ordered() {
+  public List<QuoteEntity> orderedDesc() {
     return quotes.listOrderByVolumeDesc();
+  }
+
+  @Tag(name = "quotes")
+  @Get("/jpa/ordered/asc")
+  public List<QuoteEntity> orderedAsc() {
+    return quotes.listOrderByVolumeAsc();
   }
 
 }

@@ -10,7 +10,11 @@
         </encoder>
     </appender>
 
-    <logger name="com.illusionist" level="DEBUG"/>
+    <logger name="illusionist" level="DEBUG" />
+    <logger name="org.flywaydb.core" level="INFO" />
+    <logger name="io.micronaut.flyway" level="INFO" />
+    <logger name="io.micronaut.data.query" level="DEBUG" />
+    <logger name="org.hibernate.sql" level="DEBUG" />
 
     <root level="info">
         <appender-ref ref="STDOUT"/>
